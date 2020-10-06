@@ -53,6 +53,8 @@ int main(int argc, char* argv[]) {
 
   srand(seed);
 
+  printf("\nPoint number: %d\n", p);
+
   // Sequential execution
   start = omp_get_wtime();
   pi_seq = montecarlo_seq(p);

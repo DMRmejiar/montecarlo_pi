@@ -2,7 +2,7 @@ SRCS = functions.c montecarlo_pi.c
 TARG = montecarlo_pi.out
 OBJS = $(SRCS:.c=.o)
 
-CC = gcc-9
+CC = gcc
 OPTS = -Wall
 FLAGS_OPENMP = -fopenmp
 

@@ -23,18 +23,31 @@ double montecarlo_seq (int p) {
   return pi;
 }
 
-double montecarlo_par (int p, int n_threads, unsigned int seed) {  
-  int i, counter = 0;
+double montecarlo_par (int p, int n_threads, unsigned int seed) {
+  
+  int i, local_p, local_counter, counter, my_rank, new_p;
   double x, y, z, pi;
+  
+  local_counter = 0;
+  counter = 0;
+  local_p = p / n_threads;
+  new_p = local_p * n_threads;
 
-  // TODO: Modify this function to compute pi in parallel using n threads 
-  for(i = 0; i < p; ++i) {
-    x = (double)rand() / RAND_MAX;
-    y = (double)rand() / RAND_MAX;
-    z = x * x + y * y;
-    if( z <= 1 ) counter++;
+  #pragma omp parallel num_threads(n_threads) shared(counter) firstprivate(x, y, z, i, local_counter, my_rank, local_p)
+  {
+    my_rank = omp_get_thread_num();
+    unsigned int local_seed = seed * (my_rank+1);
+    
+    for(i = 0; i < local_p; ++i) {
+      x = (double)rand_r(&local_seed) / RAND_MAX;
+      y = (double)rand_r(&local_seed) / RAND_MAX;
+      z = x * x + y * y;
+      if( z <= 1 )
+        local_counter++;
+    }
+    counter += local_counter;
   }
-  pi = (double) counter / p * 4;
-
+  pi = (double) counter / new_p * 4;
+  
   return pi;
 }
