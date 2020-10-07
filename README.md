@@ -6,9 +6,9 @@
 ### Explicar algoritmo a paralelizar
 El algoritmo viene del metodo de Monte Carlo que se puede usar para calcular un aproximado el numero *Pi*. **¿Cómo lo hace?** se tiene un cuadraro de lado *2r* un circulo dentro del cuadrado de radio *r*, luego se toman puntos aleatorios dentro del cuadrado y se revisa si el punto esta dentro o no del circulo[*Figura 1*], ahora para realizar el calculo de *Pi* se hace referencia a la formula en la [*Figura 2*].
 <div align='center'>
-    </br><img src='img/estimating-pi-monte-carlo-method.png' alt="Simulación metodo monte carlo" width=70%>
+    </br><img src='img/estimating-pi-monte-carlo-method.png' alt="Simulación metodo monte carlo" width=50%>
     </br><i>Figura 1. Ilustración metodo Monte Carlo</i>
-    </br></br><img src='img/formula-monte-carlo.png' alt="Formula metodo monte carlo" width=95%>
+    </br></br><img src='img/formula-monte-carlo.png' alt="Formula metodo monte carlo" width=70%>
     </br><i>Figura 2. Formula metodo Monte Carlo</i>
     </br></br>
 </div>
@@ -34,7 +34,7 @@ double montecarlo_seq (int p) {
 ``` 
 *Figura 3. Código Secuencial Monte Carlo.*
 <div align='center'>
-    <img src='img/code-monte-carlo.gif' alt="Calculo del metodo monte carlo" width=90%>
+    <img src='img/code-monte-carlo.gif' alt="Calculo del metodo monte carlo" width=50%>
     </br><i>Figura 4. Cálculo del metodo Monte Carlo</i>
     </br></br>
 </div>
