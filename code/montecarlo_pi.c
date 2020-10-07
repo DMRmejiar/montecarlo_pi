@@ -64,7 +64,7 @@ int main(int argc, char* argv[]) {
   
   printf("\nSequential version:\n");
   printf("Estimated value of pi: %1.8f with an error of %.20f\n",
-	 pi_seq, pi_seq_err);
+	  pi_seq, pi_seq_err);
   printf("Execution time: %f s\n\n", time_seq);
 
   // Parallel execution
