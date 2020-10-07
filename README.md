@@ -6,9 +6,9 @@
 El algoritmo viene del metodo de Monte Carlo que se puede usar para calcular un aproximado el numero *Pi*. **¿Cómo lo hace?** se tiene un cuadraro de lado *2r* un circulo dentro del cuadrado de radio *r*, luego se toman puntos aleatorios dentro del cuadrado y se revisa si el punto esta dentro o no del circulo[*Figura 1*], ahora para realizar el calculo de *Pi* se hace referencia a la formula en la [*Figura 2*].
 <div align='center'>
     </br><img src='img/estimating-pi-monte-carlo-method.png' alt="Simulación metodo monte carlo" width=50%>
-    </br><i>Figura 1. Ilustración metodo Monte Carlo</i>
+    </br><i>Figura 1. Ilustración metodo Monte Carlo.</i>
     </br></br><img src='img/formula-monte-carlo.png' alt="Formula metodo monte carlo" width=70%>
-    </br><i>Figura 2. Formula metodo Monte Carlo</i>
+    </br><i>Figura 2. Formula metodo Monte Carlo.</i>
     </br></br>
 </div>
 
@@ -35,7 +35,7 @@ double montecarlo_seq (int p) {
 
 <div align='center'>
     <img src='img/code-monte-carlo.gif' alt="Calculo del metodo monte carlo" width=50%>
-    </br><i>Figura 4. Cálculo del metodo Monte Carlo</i>
+    </br><i>Figura 4. Cálculo del metodo Monte Carlo.</i>
     </br></br>
 </div>
 
@@ -83,9 +83,43 @@ double montecarlo_par (int p, int n_threads, unsigned int seed) {
 *Figura 5. Código Paralelo Monte Carlo.*
 
 ## Resultados
-### Presentación de los resultados de la ejecución.
 
-### Perfiles de Speedup y eficiencia usando (1, 2, 4, 8 y 16 hilos).
+Para las pruebas se realizaron 30 ejecuciones de la version secuencial del codigo y 30 de la version paralela para 1, 2, 4, 8 y 16 hilos, la semilla para los numeros aleatorio corresponde a **1** y la cantidad de puntos a evaluar corresponde a **100M** de puntos.
+
+El promedio de tiempo de ejecucion y error para la version secuencial se presentan en la *Figura 6* y la *Figura 7*.
+
+<div align='center'>
+    <img src='img/avr-time-seq.png' alt="1.709652 s" width=40%>
+    </br><i>Figura 6. Tiempo de ejecucion promedio secuencial.</i>
+    </br></br>
+    <img src='img/avr-error-seq.png' alt="0.00012999338462531539" width=40%>
+    </br><i>Figura 7. Error promedio secuencial.</i>
+    </br></br>
+</div>
+
+---
+
+Se presenta una tabla con los promedios con respecto a el tiempo de ejecución, el valor estimado de pi, el error de pi, el speedup y la eficiencia de la version paralela del programa en la *Tabla 1*, se entrega una grafica referente al speedup en la *Figura 8* y otra grafica referente a la eficiencia en la *Figura 9*.
+
+| Threads | Execution time | Estimated value of pi | Pi error | Speedup | Efficiency |
+|---|---|---|---|---|---|
+| 1  | 1.410390 | 3.14156520 | 0.00002745358979305834 | 1.212184 | 1.212184 |
+| 2  | 0.716609 | 3.14151692 | 0.00007573358979318101 | 2.385751 | 1.192876 |
+| 4  | 0.364095 | 3.14157176 | 0.00002089358979295852 | 4.695619 | 1.173905 |
+| 8  | 0.220137 | 3.14171376 | 0.00012110641020690593 | 7.766305 | 0.970788 |
+| 16 | 0.225630 | 3.14149312 | 0.00009953358979331028 | 7.577242 | 0.473578 |
+
+*Tabla 1. Promedio de los resultados.*
+
+<div align='center'>
+    <img src='img/Speedup.png' alt="Diagrama de lineas speedup" width=50%>
+    </br><i>Figura 8. Speedup.</i>
+    </br></br>
+    <img src='img/Efficiency.png' alt="Diagrama de lineas efficiency" width=50%>
+    </br><i>Figura 9. Efficiency.</i>
+    </br></br>
+</div>
 
 ## Conclusiones
-### ¿Qué conclusiones pueden ser formulada a partir de los resultados obtenidos?
+
+Durante la paralelización del codigo se encontro una complicación al hacer un primer acercamiento a la paralelizacion del codigo, dado que como se menciono antes la funcion **rand()** no es thread-safe, lo cual hacia que 
