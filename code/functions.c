@@ -33,7 +33,11 @@ double montecarlo_par (int p, int n_threads, unsigned int seed) {
   local_p = p / n_threads;
   new_p = local_p * n_threads;
 
-  #pragma omp parallel num_threads(n_threads) shared(counter) firstprivate(x, y, z, i, local_counter, my_rank, local_p)
+  #pragma omp parallel \
+    num_threads(n_threads) \
+    shared(counter) \
+    private (x, y, z, i, my_rank) \
+    firstprivate(local_counter, local_p)
   {
     my_rank = omp_get_thread_num();
     unsigned int local_seed = seed * (my_rank+1);
